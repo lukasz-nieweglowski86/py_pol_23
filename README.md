@@ -1,1 +1,1 @@
-# py_pol_23
+# Python course repository
