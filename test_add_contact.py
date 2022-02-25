@@ -50,13 +50,13 @@ class TestAddContact(unittest.TestCase):
         # new contact form - telephones
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("home").clear()
-        wd.find_element_by_name("home").send_keys(contact.home)
+        wd.find_element_by_name("home").send_keys(contact.homenumber)
         wd.find_element_by_name("mobile").click()
         wd.find_element_by_name("mobile").clear()
-        wd.find_element_by_name("mobile").send_keys(contact.mobile)
+        wd.find_element_by_name("mobile").send_keys(contact.mobilenumber)
         wd.find_element_by_name("work").click()
         wd.find_element_by_name("work").clear()
-        wd.find_element_by_name("work").send_keys(contact.work)
+        wd.find_element_by_name("work").send_keys(contact.worknumber)
         wd.find_element_by_name("fax").click()
         wd.find_element_by_name("fax").clear()
         wd.find_element_by_name("fax").send_keys(contact.fax)
@@ -114,8 +114,8 @@ class TestAddContact(unittest.TestCase):
         self.login(wd, username="admin", password="secret")
         self.add_new_contact(wd, Contact(firstname="Qwerty", middlename="Qwe", lastname="Asda",
                                          nickname="Lotr", title="Agent", company="Deep Space Core Mining",
-                                         address="Elm Street", home="123123123", mobile="234234234",
-                                         work="345345345", fax="456456456", email="qwerty.asda@gmail.com",
+                                         address="Elm Street", homenumber="123123123", mobilenumber="234234234",
+                                         worknumber="345345345", fax="456456456", email="qwerty.asda@gmail.com",
                                          email2="qwerty.asda+2@gmail.com", email3="qwerty.asda+3@gmail.com",
                                          homepage="google.com", bday="19", bmonth="December", byear="1977",
                                          aday="24", amonth="November", ayear="2005", address2="Hamburger Hill",
