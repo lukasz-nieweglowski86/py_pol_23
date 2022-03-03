@@ -1,4 +1,3 @@
-from selenium.webdriver.support.ui import Select
 
 
 class ContactHelper:
@@ -6,95 +5,78 @@ class ContactHelper:
     def __init__(self, app):
         self.app = app
 
-    def add(self, contact):
+    def initiate_adding_new_contact(self):
         wd = self.app.wd
-        # initiate adding new contact
         wd.find_element_by_link_text("add new").click()
-        # new contact form - name and first address
-        wd.find_element_by_name("firstname").click()
-        wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys(contact.firstname)
-        wd.find_element_by_name("middlename").click()
-        wd.find_element_by_name("middlename").clear()
-        wd.find_element_by_name("middlename").send_keys(contact.middlename)
-        wd.find_element_by_name("lastname").click()
-        wd.find_element_by_name("lastname").clear()
-        wd.find_element_by_name("lastname").send_keys(contact.lastname)
-        wd.find_element_by_name("nickname").click()
-        wd.find_element_by_name("nickname").clear()
-        wd.find_element_by_name("nickname").send_keys(contact.nickname)
-        wd.find_element_by_name("title").click()
-        wd.find_element_by_name("title").clear()
-        wd.find_element_by_name("title").send_keys(contact.title)
-        wd.find_element_by_name("company").click()
-        wd.find_element_by_name("company").clear()
-        wd.find_element_by_name("company").send_keys(contact.company)
-        wd.find_element_by_name("address").click()
-        wd.find_element_by_name("address").clear()
-        wd.find_element_by_name("address").send_keys(contact.address)
-        # new contact form - telephones
-        wd.find_element_by_name("home").click()
-        wd.find_element_by_name("home").clear()
-        wd.find_element_by_name("home").send_keys(contact.homenumber)
-        wd.find_element_by_name("mobile").click()
-        wd.find_element_by_name("mobile").clear()
-        wd.find_element_by_name("mobile").send_keys(contact.mobilenumber)
-        wd.find_element_by_name("work").click()
-        wd.find_element_by_name("work").clear()
-        wd.find_element_by_name("work").send_keys(contact.worknumber)
-        wd.find_element_by_name("fax").click()
-        wd.find_element_by_name("fax").clear()
-        wd.find_element_by_name("fax").send_keys(contact.fax)
-        # new contact form - emails
-        wd.find_element_by_name("email").click()
-        wd.find_element_by_name("email").clear()
-        wd.find_element_by_name("email").send_keys(contact.email)
-        wd.find_element_by_name("email2").click()
-        wd.find_element_by_name("email2").clear()
-        wd.find_element_by_name("email2").send_keys(contact.email2)
-        wd.find_element_by_name("email3").click()
-        wd.find_element_by_name("email3").clear()
-        wd.find_element_by_name("email3").send_keys(contact.email3)
-        wd.find_element_by_name("homepage").click()
-        wd.find_element_by_name("homepage").clear()
-        wd.find_element_by_name("homepage").send_keys(contact.homepage)
-        # new contact form - birthday and anniversary
-        wd.find_element_by_name("bday").click()
-        Select(wd.find_element_by_name("bday")).select_by_visible_text(contact.bday)
-        wd.find_element_by_name("bmonth").click()
-        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(contact.bmonth)
-        wd.find_element_by_name("byear").click()
-        wd.find_element_by_name("byear").clear()
-        wd.find_element_by_name("byear").send_keys(contact.byear)
-        wd.find_element_by_name("aday").click()
-        Select(wd.find_element_by_name("aday")).select_by_visible_text(contact.aday)
-        wd.find_element_by_name("amonth").click()
-        Select(wd.find_element_by_name("amonth")).select_by_visible_text(contact.amonth)
-        wd.find_element_by_name("ayear").click()
-        wd.find_element_by_name("ayear").clear()
-        wd.find_element_by_name("ayear").send_keys(contact.ayear)
-        # new contact form - secondary address and phone number
-        wd.find_element_by_name("address2").click()
-        wd.find_element_by_name("address2").clear()
-        wd.find_element_by_name("address2").send_keys(contact.address2)
-        wd.find_element_by_name("phone2").click()
-        wd.find_element_by_name("phone2").clear()
-        wd.find_element_by_name("phone2").send_keys(contact.phone2)
-        # new contact form - notes
-        wd.find_element_by_name("notes").click()
-        wd.find_element_by_name("notes").clear()
-        wd.find_element_by_name("notes").send_keys(contact.notes)
-        # new contact form - submit
-        wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
-        self.back_to_home_page()
 
-    def delete_first(self):
+    def fill_form(self, contact):
+        # new contact form - name and first address
+        self.app.change_value("firstname", contact.firstname)
+        self.app.change_value("middlename", contact.middlename)
+        self.app.change_value("lastname", contact.lastname)
+        self.app.change_value("nickname", contact.nickname)
+        self.app.change_value("title", contact.title)
+        self.app.change_value("company", contact.company)
+        self.app.change_value("address", contact.address)
+        # new contact form - telephones
+        self.app.change_value("home", contact.homenumber)
+        self.app.change_value("mobile", contact.mobilenumber)
+        self.app.change_value("work", contact.worknumber)
+        self.app.change_value("fax", contact.fax)
+        # new contact form - emails
+        self.app.change_value("email", contact.email)
+        self.app.change_value("email2", contact.email2)
+        self.app.change_value("email3", contact.email3)
+        self.app.change_value("homepage", contact.homepage)
+        # new contact form - birthday and anniversary
+        self.app.select_value("bday", contact.bday)
+        self.app.select_value("bmonth", contact.bmonth)
+        self.app.change_value("byear", contact.byear)
+        self.app.select_value("aday", contact.aday)
+        self.app.select_value("amonth", contact.amonth)
+        self.app.change_value("ayear", contact.ayear)
+        # new contact form - secondary address and phone number
+        self.app.change_value("address2", contact.address2)
+        self.app.change_value("phone2", contact.phone2)
+        # new contact form - notes
+        self.app.change_value("notes", contact.notes)
+
+    def submit_adding_new_contact(self):
         wd = self.app.wd
-        # select first
+        wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+
+    def click_edit_icon(self):
+        wd = self.app.wd
         wd.find_element_by_xpath("//img[@title='Edit']").click()
-        # submit
+
+    def submit_contact_edition(self):
+        wd = self.app.wd
+        wd.find_element_by_name("update").click()
+
+    def select_first_contact(self):
+        wd = self.app.wd
+        wd.find_element_by_xpath("//img[@title='Edit']").click()
+
+    def submit_contact_deletion(self):
+        wd = self.app.wd
         wd.find_element_by_xpath("//input[@value='Delete']").click()
 
     def back_to_home_page(self):
         wd = self.app.wd
         wd.find_element_by_link_text("home page").click()
+
+    def add(self, contact):
+        self.initiate_adding_new_contact()
+        self.fill_form(contact)
+        self.submit_adding_new_contact()
+        self.back_to_home_page()
+
+    def edit_first(self, new_data):
+        self.app.open_home_page()
+        self.click_edit_icon()
+        self.fill_form(new_data)
+        self.submit_contact_edition()
+
+    def delete_first(self):
+        self.select_first_contact()
+        self.submit_contact_deletion()
