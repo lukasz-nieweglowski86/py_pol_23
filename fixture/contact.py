@@ -78,5 +78,6 @@ class ContactHelper:
         self.submit_contact_edition()
 
     def delete_first(self):
+        self.app.open_home_page()
         self.select_first_contact()
         self.submit_contact_deletion()
