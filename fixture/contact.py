@@ -11,35 +11,35 @@ class ContactHelper:
 
     def fill_form(self, contact):
         # new contact form - name and first address
-        self.app.change_value("firstname", contact.firstname)
-        self.app.change_value("middlename", contact.middlename)
-        self.app.change_value("lastname", contact.lastname)
-        self.app.change_value("nickname", contact.nickname)
-        self.app.change_value("title", contact.title)
-        self.app.change_value("company", contact.company)
-        self.app.change_value("address", contact.address)
+        self.app.set_value("firstname", contact.firstname)
+        self.app.set_value("middlename", contact.middlename)
+        self.app.set_value("lastname", contact.lastname)
+        self.app.set_value("nickname", contact.nickname)
+        self.app.set_value("title", contact.title)
+        self.app.set_value("company", contact.company)
+        self.app.set_value("address", contact.address)
         # new contact form - telephones
-        self.app.change_value("home", contact.homenumber)
-        self.app.change_value("mobile", contact.mobilenumber)
-        self.app.change_value("work", contact.worknumber)
-        self.app.change_value("fax", contact.fax)
+        self.app.set_value("home", contact.homenumber)
+        self.app.set_value("mobile", contact.mobilenumber)
+        self.app.set_value("work", contact.worknumber)
+        self.app.set_value("fax", contact.fax)
         # new contact form - emails
-        self.app.change_value("email", contact.email)
-        self.app.change_value("email2", contact.email2)
-        self.app.change_value("email3", contact.email3)
-        self.app.change_value("homepage", contact.homepage)
+        self.app.set_value("email", contact.email)
+        self.app.set_value("email2", contact.email2)
+        self.app.set_value("email3", contact.email3)
+        self.app.set_value("homepage", contact.homepage)
         # new contact form - birthday and anniversary
         self.app.select_value("bday", contact.bday)
         self.app.select_value("bmonth", contact.bmonth)
-        self.app.change_value("byear", contact.byear)
+        self.app.set_value("byear", contact.byear)
         self.app.select_value("aday", contact.aday)
         self.app.select_value("amonth", contact.amonth)
-        self.app.change_value("ayear", contact.ayear)
+        self.app.set_value("ayear", contact.ayear)
         # new contact form - secondary address and phone number
-        self.app.change_value("address2", contact.address2)
-        self.app.change_value("phone2", contact.phone2)
+        self.app.set_value("address2", contact.address2)
+        self.app.set_value("phone2", contact.phone2)
         # new contact form - notes
-        self.app.change_value("notes", contact.notes)
+        self.app.set_value("notes", contact.notes)
 
     def submit_adding_new_contact(self):
         wd = self.app.wd
