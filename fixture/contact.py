@@ -1,3 +1,4 @@
+from model.contact import Contact
 
 
 class ContactHelper:
@@ -63,7 +64,9 @@ class ContactHelper:
 
     def back_to_home_page(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("home page").click()
+        if not (wd.current_url.endswith("localhost/addressbook/edit.php") and
+                len(wd.find_elements_by_link_text("add next")) > 0):
+            wd.find_element_by_link_text("home page").click()
 
     def add(self, contact):
         self.initiate_adding_new_contact()
@@ -86,3 +89,14 @@ class ContactHelper:
         wd = self.app.wd
         self.app.open_home_page()
         return len(wd.find_elements_by_name("selected[]"))
+
+    def get_contacts_list(self):
+        wd = self.app.wd
+        self.app.open_home_page()
+        contacts = []
+        for element in wd.find_elements_by_xpath("//tr[@name='entry']"):
+            contact_firstname = element.find_element_by_xpath(".//td[3]").text
+            contact_lastname = element.find_element_by_xpath(".//td[2]").text
+            id = element.find_element_by_name("selected[]").get_attribute("value")
+            contacts.append(Contact(firstname=contact_firstname, lastname=contact_lastname, id=id))
+        return contacts
