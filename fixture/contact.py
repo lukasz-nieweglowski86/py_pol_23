@@ -73,30 +73,36 @@ class ContactHelper:
         self.fill_form(contact)
         self.submit_adding_new_contact()
         self.back_to_home_page()
+        self.contact_cache = None
 
     def edit_first(self, new_data):
         self.app.open_home_page()
         self.click_edit_icon()
         self.fill_form(new_data)
         self.submit_contact_edition()
+        self.contact_cache = None
 
     def delete_first(self):
         self.app.open_home_page()
         self.select_first_contact()
         self.submit_contact_deletion()
+        self.contact_cache = None
 
     def count(self):
         wd = self.app.wd
         self.app.open_home_page()
         return len(wd.find_elements_by_name("selected[]"))
 
+    contact_cache = None
+
     def get_contacts_list(self):
-        wd = self.app.wd
-        self.app.open_home_page()
-        contacts = []
-        for element in wd.find_elements_by_xpath("//tr[@name='entry']"):
-            contact_firstname = element.find_element_by_xpath(".//td[3]").text
-            contact_lastname = element.find_element_by_xpath(".//td[2]").text
-            id = element.find_element_by_name("selected[]").get_attribute("value")
-            contacts.append(Contact(firstname=contact_firstname, lastname=contact_lastname, id=id))
-        return contacts
+        if self.contact_cache is None:
+            wd = self.app.wd
+            self.app.open_home_page()
+            self.contact_cache = []
+            for element in wd.find_elements_by_xpath("//tr[@name='entry']"):
+                contact_firstname = element.find_element_by_xpath(".//td[3]").text
+                contact_lastname = element.find_element_by_xpath(".//td[2]").text
+                id = element.find_element_by_name("selected[]").get_attribute("value")
+                self.contact_cache.append(Contact(firstname=contact_firstname, lastname=contact_lastname, id=id))
+        return list(self.contact_cache)
