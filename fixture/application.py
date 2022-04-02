@@ -3,9 +3,11 @@ from fixture.session import SessionHelper
 from fixture.group import GroupHelper
 from fixture.contact import ContactHelper
 from selenium.webdriver.support.ui import Select
+import json
 
 
 class Application:
+    target = {}
 
     def __init__(self, browser, base_url):
         if browser == "firefox":
@@ -21,6 +23,12 @@ class Application:
         self.contact = ContactHelper(self)
         self.base_url = base_url
 
+    def return_json_data(self):
+        f = open("target.json")
+        target = json.load(f)
+        f.close()
+        return target
+
     def is_valid(self):
         try:
             self.wd.current_url
@@ -30,7 +38,7 @@ class Application:
 
     def open_home_page(self):
         wd = self.wd
-        if not (wd.current_url.endswith("localhost/addressbook/") and
+        if not (wd.current_url.endswith(self.return_json_data()["baseUrl"]) and
                 len(wd.find_elements_by_name("searchstring")) > 0):
             wd.get(self.base_url)
 

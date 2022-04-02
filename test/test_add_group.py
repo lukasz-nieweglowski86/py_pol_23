@@ -13,7 +13,7 @@ def random_string(prefix, maxlen):
 testdata = [Group(name="", header="", footer="")] + \
            [Group(name=random_string("name: ", 8), header=random_string("header: ", 12),
                   footer=random_string("footer: ", 12))
-            for i in range(5)]
+            for i in range(1)]
 
 
 @pytest.mark.parametrize("group", testdata, ids=[repr(x) for x in testdata])

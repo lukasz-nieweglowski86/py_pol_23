@@ -43,7 +43,7 @@ testdata = [Contact(firstname=random_string("firstname: ", 8),
                     ayear=str(random.randint(1981, 2021)),
                     address2=random_string("address2: ", 16),
                     notes=random_string("notes: ", 50))
-            for i in range(5)]
+            for i in range(1)]
 
 
 @pytest.mark.parametrize("contact", testdata, ids=[repr(x) for x in testdata])
