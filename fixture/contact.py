@@ -67,7 +67,7 @@ class ContactHelper:
 
     def back_to_home_page(self):
         wd = self.app.wd
-        if not (wd.current_url.endswith("localhost/addressbook/edit.php") and
+        if not (wd.current_url.endswith(self.app.return_json_data()["baseUrl"] + "/edit.php") and
                 len(wd.find_elements_by_link_text("add next")) > 0):
             wd.find_element_by_link_text("home page").click()
 
