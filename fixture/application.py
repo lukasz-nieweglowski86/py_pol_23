@@ -4,6 +4,7 @@ from fixture.group import GroupHelper
 from fixture.contact import ContactHelper
 from selenium.webdriver.support.ui import Select
 import json
+import os.path
 
 
 class Application:
@@ -24,10 +25,11 @@ class Application:
         self.base_url = base_url
 
     def return_json_data(self):
-        f = open("target.json")
-        target = json.load(f)
-        f.close()
-        return target
+        j = "target.json"
+        json_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", j)
+        with open(json_file) as f:
+            target = json.load(f)
+            return target
 
     def is_valid(self):
         try:
