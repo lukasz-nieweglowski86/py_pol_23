@@ -25,7 +25,8 @@ class Application:
         self.base_url = base_url
 
     def return_json_data(self):
-        json_file = os.path.join(os.path.dirname(os.path.abspath(__file__)))
+        j = "target.json"
+        json_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", j)
         with open(json_file) as f:
             target = json.load(f)
             return target
