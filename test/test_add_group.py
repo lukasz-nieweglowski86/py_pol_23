@@ -1,19 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 from model.group import Group
-import random
-import string
-
-
-def random_string(prefix, maxlen):
-    symbols = string.ascii_letters + string.digits
-    return prefix + "".join([random.choice(symbols) for i in range(random.randrange(maxlen))])
-
-
-testdata = [Group(name="", header="", footer="")] + \
-           [Group(name=random_string("name: ", 8), header=random_string("header: ", 12),
-                  footer=random_string("footer: ", 12))
-            for i in range(1)]
+from data.add_group import constant as testdata
 
 
 @pytest.mark.parametrize("group", testdata, ids=[repr(x) for x in testdata])
