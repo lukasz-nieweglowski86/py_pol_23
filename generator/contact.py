@@ -66,6 +66,5 @@ testdata = [Contact(firstname=random_string("firstname: ", 8),
 file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", f)
 
 with open(file, "w") as out:
-    with open(file, "w") as out:
-        jsonpickle.set_encoder_options("json", indent=4)
-        out.write(jsonpickle.encode(testdata))
+    jsonpickle.set_encoder_options("json", indent=4)
+    out.write(jsonpickle.encode(testdata))
