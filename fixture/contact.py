@@ -47,19 +47,26 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
-    def click_edit_icon(self, index):
+    def click_edit_icon_by_index(self, index):
         wd = self.app.wd
         wd.find_elements_by_xpath("//img[@title='Edit']")[index].click()
+
+    def click_edit_icon_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_xpath("//a[@href='edit.php?id=%s']" % id).click()
 
     def submit_contact_edition(self):
         wd = self.app.wd
         wd.find_element_by_name("update").click()
 
     def select_first_contact(self):
-        self.click_edit_icon(0)
+        self.click_edit_icon_by_index(0)
 
     def select_contact_by_index(self, index):
-        self.click_edit_icon(index)
+        self.click_edit_icon_by_index(index)
+
+    def select_contact_by_id(self, id):
+        self.click_edit_icon_by_id(id)
 
     def submit_contact_deletion(self):
         wd = self.app.wd
@@ -67,7 +74,7 @@ class ContactHelper:
 
     def back_to_home_page(self):
         wd = self.app.wd
-        if not (wd.current_url.endswith(self.app.return_json_data()["baseUrl"] + "/edit.php") and
+        if not (wd.current_url.endswith(self.app.return_json_data()["web"]["baseUrl"] + "/edit.php") and
                 len(wd.find_elements_by_link_text("add next")) > 0):
             wd.find_element_by_link_text("home page").click()
 
@@ -83,7 +90,14 @@ class ContactHelper:
 
     def edit_contact_by_index(self, index, new_data):
         self.app.open_home_page()
-        self.click_edit_icon(index)
+        self.click_edit_icon_by_index(index)
+        self.fill_form(new_data)
+        self.submit_contact_edition()
+        self.contact_cache = None
+
+    def edit_contact_by_id(self, id, new_data):
+        self.app.open_home_page()
+        self.click_edit_icon_by_id(id)
         self.fill_form(new_data)
         self.submit_contact_edition()
         self.contact_cache = None
@@ -94,6 +108,12 @@ class ContactHelper:
     def delete_contact_by_index(self, index):
         self.app.open_home_page()
         self.select_contact_by_index(index)
+        self.submit_contact_deletion()
+        self.contact_cache = None
+
+    def delete_contact_by_id(self, id):
+        self.app.open_home_page()
+        self.select_contact_by_id(id)
         self.submit_contact_deletion()
         self.contact_cache = None
 
