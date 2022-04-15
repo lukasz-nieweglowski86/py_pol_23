@@ -11,7 +11,7 @@ def test_edit_group_name(app, db, check_ui):
     app.group.edit_group_by_id(group.id, group)
     new_groups = db.get_group_list()
     if check_ui:
-        assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
+        assert sorted(new_groups, key=Group.id_or_max) == sorted(app.group.get_group_list(), key=Group.id_or_max)
 
 
 # def test_edit_group_header(app):
