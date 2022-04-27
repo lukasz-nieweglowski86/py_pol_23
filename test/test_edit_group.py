@@ -11,8 +11,8 @@ def test_edit_group_name(app, db, check_ui):
     app.group.edit_group_by_id(group_id, group)
     new_groups = db.get_group_list()
     assert len(old_groups) == len(new_groups)
-    for index, group in enumerate(old_groups):
-        if group.id == group_id:
+    for index, i in enumerate(old_groups):
+        if i.id == group_id:
             old_groups[index] = group
         else:
             index -= 1
