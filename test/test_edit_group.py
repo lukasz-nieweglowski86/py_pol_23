@@ -16,7 +16,7 @@ def test_edit_group_name(app, db, check_ui):
             old_groups[index] = group
         else:
             index -= 1
-    assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
+    assert old_groups == new_groups
     if check_ui:
         assert sorted(new_groups, key=Group.id_or_max) == sorted(app.group.get_group_list(), key=Group.id_or_max)
 

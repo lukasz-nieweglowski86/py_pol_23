@@ -30,7 +30,7 @@ def test_edit_first_contact(app, db, check_ui):
             old_contacts[index] = contact
         else:
             index -= 1
-    assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
+    assert old_contacts == new_contacts
     if check_ui:
         assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contacts_list(),
                                                                      key=Contact.id_or_max)
